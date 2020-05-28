@@ -19,11 +19,7 @@ ENV TENSOR_HOME /home/isr
 WORKDIR $TENSOR_HOME
 
 RUN pip install --upgrade pip
-RUN pip install opencv-python tqdm OpenEXR pyexr
-# RUN pip install -e ".[gpu]" --ignore-installed
-
-
-
-RUN wget https://public-asai-dl-models.s3.eu-central-1.amazonaws.com/ISR/rrdn-C4-D3-G32-G032-T10-x4-GANS/rrdn-C4-D3-G32-G032-T10-x4_epoch299.hdf5
-ENV PYTHONPATH ./ISR/:$PYTHONPATH
-ENV PYTHONPATH ./ISR/:$PYTHONPATH
+RUN pip install opencv-python tqdm OpenEXR pyexr ISR
+RUN pip install --ignore-installed tensorflow-gpu==2.0.0
+RUN mkdir -p /root/.keras/datasets/
+RUN wget https://public-asai-dl-models.s3.eu-central-1.amazonaws.com/ISR/rrdn-C4-D3-G32-G032-T10-x4-GANS/rrdn-C4-D3-G32-G032-T10-x4_epoch299.hdf5 -O /root/.keras/datasets/rrdn-C4-D3-G32-G032-T10-x4_epoch299.hdf5

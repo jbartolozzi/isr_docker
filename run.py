@@ -12,8 +12,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="Path to input directory.")
     parser.add_argument("output", help="Path to output directory.")
-    parser.add_argument("-model", type=str, default="gans",
-                        choices=["gans", ], help="Image padding around bbox.")
+    # parser.add_argument("-model", type=str, default="gans",
+    #                     choices=["gans", ], help="Image padding around bbox.")
     parser.add_argument("-patch_size", type=int, default=128, help="Image padding around bbox.")
     parser.add_argument("-gpu", "--gpu", type=int,
                         help="Gpu Number.", default=2)
@@ -44,7 +44,8 @@ def run_video(input_file, output_file, model):
 
 
 def run_exr(input_file, output_file, model):
-    result = model.predict(pyexr.read(input_file))
+    lr_img = pyexr.read(input_file)[:, :, 0:3] * 255
+    result = model.predict(lr_img) / 255.
     pyexr.write(output_file, result)
 
 
