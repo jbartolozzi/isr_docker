@@ -25,7 +25,7 @@ RUN pip install --ignore-installed tensorflow-gpu==2.0.0
 # Download the GAN weights so we dont need to download each time
 RUN mkdir -p /root/.keras/datasets/
 RUN wget https://public-asai-dl-models.s3.eu-central-1.amazonaws.com/ISR/rrdn-C4-D3-G32-G032-T10-x4-GANS/rrdn-C4-D3-G32-G032-T10-x4_epoch299.hdf5 -O /root/.keras/datasets/rrdn-C4-D3-G32-G032-T10-x4_epoch299.hdf5
-
+RUN echo "ANOTHER"
 RUN git clone https://github.com/jbartolozzi/isr_docker.git && mkdir isr_docker/input
 ENV PYTHONPATH=/home/isr/isr_docker/:${PYTHONPATH}
 ENTRYPOINT ["/usr/local/bin/python", "/home/isr/isr_docker/run.py"]

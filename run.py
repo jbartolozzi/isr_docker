@@ -57,8 +57,8 @@ def run_image(input_file, output_file, model):
 def main():
 
     args = parse_args()
-    input_file = "input/" + args.input
-    output_file = "input/" + args.output
+    input_file = "/input/" + args.input
+    output_file = "/input/" + args.output
     model = RRDN(weights="gans")
 
     if any(t in input_file for t in [".mov", ".mp4", ".mkv"]):
