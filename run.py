@@ -50,7 +50,7 @@ def run_exr(input_file, output_file, model):
 
 
 def run_image(input_file, output_file, model):
-    sr_img = model.predict(np.array(Image.open(input_file)))
+    sr_img = model.predict(np.array(Image.open(input_file))[:, :, 0:3])
     result = Image.fromarray(sr_img)
     result.save(output_file)
 
